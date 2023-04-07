@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { log } from 'console';
 const prisma = new PrismaClient();
 
 async function main() {
@@ -14,23 +13,16 @@ async function main() {
 
   const user = await prisma.user.findMany({
     where: {
-      // name: { not: 'Kwame' },
-      // name: {
-      //   in: ['Kwame', 'Wassem Darkwa'],
-      // },
-      age: {
-        lte: 20,
-      },
+      name: 'Kwame',
+    },
+    // distinct: ['name', 'age'],
+    // take: 2,
+    orderBy: {
+      age: 'asc',
     },
   });
-  console.log(
-    '*************************************************************'
-  );
 
   console.log(user);
-  console.log(
-    '*************************************************************'
-  );
 }
 
 main()
